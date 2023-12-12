@@ -31,7 +31,6 @@ export class BookController {
 
   @Post('addBook')
   addBook(@Body() book: Book): string {
-    console.log(book);
     return this.BookService.addBookService(book);
   }
 }

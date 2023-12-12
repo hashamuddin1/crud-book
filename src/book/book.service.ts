@@ -8,7 +8,6 @@ export class BookService {
 
   //add new book
   addBookService(book: Book): string {
-    console.log(book)
     book.id = uuidv4();
     this.books.push(book);
     return 'Add New Book Successfully';
