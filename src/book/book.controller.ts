@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Post,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './data/book.dto';
@@ -32,5 +33,17 @@ export class BookController {
   @Post('addBook')
   addBook(@Body() book: Book): string {
     return this.BookService.addBookService(book);
+  }
+  
+  @Get('/findBook/:id')
+  findBook(@Param('id') id: number): string {
+    console.log(id, typeof id);
+    return 'fetch book By ID';
+  }
+
+  @Get('/:id')
+  findBookById(@Param('id', ParseIntPipe) id: number): string {
+    console.log(id, typeof id);
+    return 'fetch book By ID';
   }
 }
