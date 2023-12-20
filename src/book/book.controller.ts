@@ -7,10 +7,10 @@ import {
   Param,
   Post,
   ParseIntPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './data/book.dto';
-import { bookPipe } from './pipes/book.pipe';
 
 @Controller('book')
 export class BookController {
@@ -49,9 +49,8 @@ export class BookController {
     return 'fetch book By ID';
   }
 
-  //custom pipe
   @Post("/add")
-  insertBook(@Body(new bookPipe()) book:Book):string{
+  insertBook(@Body(new ValidationPipe()) book:Book):string{
     return "insert book"
   }
 }
