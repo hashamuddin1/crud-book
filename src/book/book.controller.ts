@@ -8,6 +8,7 @@ import {
   Post,
   ParseIntPipe,
   ValidationPipe,
+  BadRequestException,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './data/book.dto';
@@ -49,8 +50,15 @@ export class BookController {
     return 'fetch book By ID';
   }
 
-  @Post("/add")
-  insertBook(@Body(new ValidationPipe()) book:Book):string{
-    return "insert book"
+  @Post('/add')
+  insertBook(@Body(new ValidationPipe()) book: Book): string {
+    if (book.id === '1') {
+      throw new BadRequestException({
+        status: 400,
+        message: 'This Value is not allowed',
+      });
+    }
+
+    return 'insert book';
   }
 }
